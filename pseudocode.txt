@@ -1,0 +1,17 @@
+FUNCTION bill_amount():
+    VALID INPUT: "Enter the bill amount: $"
+    RETURN bill / 100
+
+FUNCTION tip_percentage():
+    VALID INPUT: "Enter the tip percentage:
+    RETURN tip
+
+FUNCTION calculate_tip():
+    calculate = bill * tip
+    RETURN calculate
+
+FUNCTION display_summary():
+    DISPLAY "Tip Calculator Summary"
+    DISPLAY "Bill is: $(bill)
+    DISPLAY "Tip Amount is: (tip)
+    DISPLAY "Total Bill: $(total)
