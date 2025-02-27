@@ -1,53 +1,62 @@
 # tip_calculator.py
 # A simple tip calculator to compute tip amount and total bill
 
-# REMEMBER TO REMOVE COMMENTS TO SELF B4 FINAL SUBMISSION
-
-#Main Issue: Parameters/Variables, structures should be like 90% fine
-
-#Asks for the bill amount
+#Asks for and validates total bill
 def bill_amount():
-     while True: #Need to put bill > 0 somewhere, dunno where tho, same 4 tip
-        try:
-            bill = float(input("Enter the bill amount: $"))
-            return bill
-        except: # i know the except correct from what I remember in other assignment
-            print("Error")
-            bill_amount()
-    
-#Asks what percentage you want the tip to be of the bill
-def tip_percentage():
     while True:
         try:
-            tip = float(input("Enter the tip percentage:"))# confident in correct code
-            return tip / 100 #Should be correct, print works, check once calculations can work
+            bill = float(input("Enter the bill amount: $"))
+            if bill > 0:
+                return bill
+            else:
+                print("Incorrect input, use a positive number.")
+                bill_amount()
         except:
-            print("Error")
-            tip_percentage()
+            print("Error, try again. Make sure you are using a number.")
 
-#these two functions cause of issues? ^ Can't call in parameters
+#Asks for and validates tip percentage
+def tip_percentage(bill):
+    while True:
+        try:
+            tip = float(input("Enter the tip percentage: %"))
+            if tip > 0:
+                return tip / 100 * bill
+            else:
+                print("Incorrect input, try again")
+                tip_percentage(bill)
+        except:
+            print("Error, try that again. Make sure you are using just a number.")
 
-# #Calculates the tip amount
-def calculate_tip(bill_amount, tip_percentage): #Used right parameters just isn't working??
-    calculate = bill * tip #this prolly wrong?
-    return calculate
+#Calculates the tip from percentage given
+def calculate_tip(bill, tip): 
+    tip_calculate = bill * tip
+    return tip_calculate
 
+#Calculates the total, bill + tip
+def calculate_total(bill, tip):
+    total_calculation = bill + tip
+    return total_calculation
 
-#Redo the two lines
-def display_summary(bill_amount, tip_percentage, calculate_tip): # This I'm 99% sure is correct parameters, or need new set of vars(?)
-    print("Bill Summary")
-    print(f"Bill Amount:{bill_amount:.2f}")#should be correct format
-    print(f"Tip Amount:{calculate_tip:.2f}")
-    total_bill = calculate + bill_amount #may have to go back to this
-    print(f"Total Bill:${total_bill:.2f}") #also go back to
-    print("Thank you for using the Tip Calculator!")
+#Displays the summary of the total
+def display_summary(bill, tip, total_calculation): # Issues
+    print("---Tip Calculator Summary---")
+    print("")
+    print(f"Bill Amount: ${bill:.2f}")
+    print(f"Tip Amount: ${tip:.2f}")
+    print(f"Total Bill: ${total_calculation:.2f}")
+    print("")
 
+# Tip Calculator, displays header and puts together functions to create one 
 def main():
-    print("Welcome to the Tip Calculator!")
-    bill_amount()
-    tip_percentage(tip)
-    # calculate_tip(bill_amount, tip_percentage)
-    display_summary(bill_amount, tip_percentage)# calculate_tip)
+    print("")
+    print("---Welcome to the Tip Calculator!---")
+    print("")
+    bill = bill_amount()
+    tip = tip_percentage(bill)
+    print("")
+    total_calculation = calculate_total(bill, tip)
+    calculate_tip(bill, tip)
+    display_summary(bill, tip, total_calculation)
 
-#Calls main function
+#Main function called to run program
 main()

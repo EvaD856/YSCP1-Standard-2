@@ -1,17 +1,62 @@
+# tip_calculator.py
+# A simple tip calculator to compute tip amount and total bill
+
+#Asks for and validates total bill
 FUNCTION bill_amount():
-    VALID INPUT: "Enter the bill amount: $"
-    RETURN bill / 100
+    Infinite loop, while true:
+        try:
+            bill = float(input("Enter the bill amount: $"))
+            if bill > 0:
+                RETURN bill
+            else:
+                DISPLAY ("Incorrect input, use a positive number.")
+                bill_amount()
+        except:
+            DISPLAY ("Error, try again. Make sure you are using a number.")
 
-FUNCTION tip_percentage():
-    VALID INPUT: "Enter the tip percentage:
-    RETURN tip
+#Asks for and validates tip percentage
+FUNCTION tip_percentage(bill):
+    Infinite loop, while true:
+        try:
+            tip = float(input("Enter the tip percentage: %"))
+            if tip > 0:
+                RETURN tip / 100 * bill
+            else:
+                DISPLAY ("Incorrect input, try again")
+                tip_percentage(bill)
+        except:
+            DISPLAY("Error, try that again. Make sure you are using just a number.")
 
-FUNCTION calculate_tip():
-    calculate = bill * tip
-    RETURN calculate
+#Calculates the tip from percentage given
+FUNCTION calculate_tip(bill, tip): 
+    tip_calculate = bill * tip
+    RETURN tip_calculate
 
-FUNCTION display_summary():
-    DISPLAY "Tip Calculator Summary"
-    DISPLAY "Bill is: $(bill)
-    DISPLAY "Tip Amount is: (tip)
-    DISPLAY "Total Bill: $(total)
+#Calculates the total, bill + tip
+FUNCTION calculate_total(bill, tip):
+    total_calculation = bill + tip
+     total_calculation
+
+#Displays the summary of the total
+FUNCTION display_summary(bill, tip, total_calculation): # Issues
+    DISPLAY("---Tip Calculator Summary---")
+    DISPLAY("")
+    DISPLAY(f"Bill Amount: ${bill:.2f}")
+    DISPLAY(f"Tip Amount: ${tip:.2f}")
+    DISPLAY(f"Total Bill: ${total_calculation:.2f}")
+    DISPLAY("")
+
+# Tip Calculator, displays header and puts together functions to create one 
+FUNCTION main():
+    DISPLAY("")
+    DISPLAY("---Welcome to the Tip Calculator!---")
+    DISPLAY("")
+    bill = bill_amount()
+    tip = tip_percentage(bill)
+    DISPLAY("")
+    total_calculation = calculate_total(bill, tip)
+    calculate_tip(bill, tip)
+    display_summary(bill, tip, total_calculation)
+
+#Main function called to run program
+main()
